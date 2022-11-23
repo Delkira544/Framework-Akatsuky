@@ -1,0 +1,17 @@
+
+.fondo{
+    background-image: url('../images/fondos/fondojapo2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.colorrojo{
+    background-color: rgba(201, 105, 132);
+}
+.colornose{
+    background-color: rgb(254, 240, 237, 0.8);
+}
+
+.colorinvisible{
+    background-color: rgb(254, 240, 237, 0.0);
+}
