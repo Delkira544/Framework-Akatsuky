@@ -9,8 +9,13 @@ use Inertia\Inertia;
 
 Route::get('/nosotros', function () {
 return Inertia::render('Nosotros/Index');
-})->middleware([])->name('nosotros');
+})->middleware(["auth"])->name('nosotros');
 
+
+Route::get("/dani", function (){
+    return view("welcome");
+}
+);
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

@@ -16,6 +16,17 @@ function Index(props) {
         redes: ["Linich14", "ssdfs", "sdasda"]
     };
 
+    let christian = {
+        nombre: "Christian Verdugo",
+        edad: "20",
+        descripcion:"Graduado de la Universidad Catolica de Temuco.\
+        5 años de experiencia arreglando impresoras\
+        Interesado en  el internet de las cosas, anime, automatizacion\
+        de la vida cotidiana ", 
+        imagen:"christian",
+        redes: ["Delkira544","sdjkfjhsdf","asdasda"] 
+    }
+
     return (
         <AuthenticatedLayout
             auth={props.auth}
@@ -29,6 +40,7 @@ function Index(props) {
                     <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg py-9">
 
                         <Colaborador usuario={Jorge} />
+                        <Colaborador usuario={christian} DarVuelta={""}/>
                     </div>
                 </div>
             </div>
