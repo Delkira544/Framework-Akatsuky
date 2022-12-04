@@ -4,6 +4,7 @@ import { Head } from '@inertiajs/inertia-react';
 import Colaborador from '@/Components/Colaborador';
 
 
+
 function Index(props) {
     let Jorge = {
         nombre: "Jorge Soto Contreras (Linich)",
