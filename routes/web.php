@@ -16,6 +16,11 @@ use Inertia\Inertia;
 |
 */
 
+Route::get('/contacto', function(){
+    return Inertia::render('Contacto');
+});
+
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
