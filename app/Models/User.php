@@ -13,7 +13,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     public function comentarios(){
-        return $this->hasMany(ComentarioProducto::class);
+        return $this->hasMany(ComentarioProducto::class, "users_id");
     }
 
 

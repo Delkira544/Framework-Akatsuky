@@ -1,5 +1,4 @@
 import React from 'react'
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 
 import hola from '@/../images/productos/4/imagen.jpg'
 
@@ -8,11 +7,12 @@ import ComentarioProducto from '@/Components/ComentarioProducto'
 import InputError from '@/Components/InputError'
 import PrimaryButton from '@/Components/PrimaryButton'
 import { useForm, Head, InertiaLink } from '@inertiajs/inertia-react'
+import Navbar from '@/Layouts/NavBar'
 
 
 
 
-function Show({ producto, comentarios }) {
+function Show({ producto, comentarios, usuario }) {
    const { data, setData, post, processing, reset, errors } = useForm({
       'producto_id': producto.id,
       'titulo': '',
@@ -21,13 +21,14 @@ function Show({ producto, comentarios }) {
 
    const enviar = (evento) => {
       evento.preventDefault()
-      console.log(data)
       post(route("comentarioProducto.store"), { onSuccess: () => reset() })
+      console.log(usuario)
 
    }
 
    return (
-      <AuthenticatedLayout
+      <Navbar
+         usuario={usuario}
       >
          <Head title={producto.nombre} />
          <div className="max-w-7xl mx-auto sm:px-6 lg:px-1 py-2">
@@ -60,7 +61,7 @@ function Show({ producto, comentarios }) {
                         className='block w-full'
                         autoFocus
                      />
-                     <InputError message={errors.title} />
+                     <InputError message={errors.titulo} />
                      <textarea
                         value={data.cuerpo}
                         onChange={e => setData('cuerpo', e.target.value)} g
@@ -70,9 +71,9 @@ function Show({ producto, comentarios }) {
                         autoFocus
                      >
                      </textarea>
-                     <InputError message={errors.title} />
+                     <InputError message={errors.cuerpo} />
                      <PrimaryButton
-                        className=''
+                        
                         disabled={processing}
                      >
                         Comentar
@@ -82,10 +83,9 @@ function Show({ producto, comentarios }) {
                </div>
 
                <div className='bg-white mt-5'>
-                  {console.log(comentarios)}
                   {
                      comentarios.map( comentario =>
-                        <ComentarioProducto comentario={comentario} />
+                        <ComentarioProducto key={comentario.id} comentario={comentario} id={usuario?usuario.id:""} />
 
                      )
                   }
@@ -94,7 +94,7 @@ function Show({ producto, comentarios }) {
             </div>
          </div>
 
-      </AuthenticatedLayout>
+      </Navbar>
    )
 }
 
