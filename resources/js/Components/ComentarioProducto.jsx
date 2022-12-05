@@ -1,4 +1,11 @@
 import React from 'react'
+import dayjs from "dayjs"
+import relativeTime from "dayjs/plugin/relativeTime"
+
+
+
+dayjs.extend(relativeTime)
+
 
 const ComentarioProducto = ({ comentario }) => {
     return (
@@ -7,12 +14,12 @@ const ComentarioProducto = ({ comentario }) => {
             <div className='flex-1'>
                 <div className='flex justify-between items-center'>
                     <div>
-                        <span className='text-gray-800'>{"sdfasdf"}</span>
-                        <small className='ml-2 text-sm text-gray-600'>{""}</small>
+                        <span className='text-gray-800'>{"persona"}</span>
+                        <small className='ml-2 text-sm text-gray-600'>{dayjs(comentario.created_at).fromNow()}</small>
                     </div>
                 </div>
-                <p className='mt-4 text-lg text-white'>{"sdfs"}</p>
-                <p className='mt-4 text-white'>{"sdkfjskld"}</p>
+                <p className='mt-4 text-lg text-gray'>{comentario.titulo}</p>
+                <p className='mt-4 text-gray'>{comentario.cuerpo}</p>
             </div>
         </div>
     )

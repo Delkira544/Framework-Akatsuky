@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model
 {
+
     use HasFactory;
+
+    public function comentarios()
+     {
+        return $this->hasMany(ComentarioProducto::class, "producto_id");
+     }
 }

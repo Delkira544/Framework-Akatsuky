@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react';
 
-export default function ImageComponent({ imagen }) {
+class ImageComponent extends Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
 
-    return (
-        <img src={imagen}  alt="cargando imagen..." />
-    )
+            <img src={this.props.url}  alt="cargando imagen..." />
+
+        );
+    }
 }
+
+export default ImageComponent;
