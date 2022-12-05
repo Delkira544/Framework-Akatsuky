@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ComentarioProductoController;
+use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\NosotrosController; //! Se incluye el controlador de nosotros
 use App\Http\Controllers\ProductoController; //! Importamos el controlador de productos
 use App\Http\Controllers\ProfileController;
