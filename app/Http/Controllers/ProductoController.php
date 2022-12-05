@@ -41,12 +41,11 @@ class ProductoController extends Controller
         })->get();
          */
         $comentarios = ComentarioProducto::with('user:id,name')->where("producto_id", '=', $producto->id)->latest()->get();
-        $id = Auth::id();
-
+        $usuario = Auth::user();
         return Inertia::render('Productos/Show', [
             'producto' => $producto,
             'comentarios' => $comentarios,
-            'id' => $id
+            'usuario' => $usuario
         ]);
     }
 

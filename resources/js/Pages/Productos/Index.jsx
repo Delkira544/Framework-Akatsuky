@@ -3,11 +3,12 @@ import CardProducto from '@/Components/Productos/CardProducto'
 import Navbar from '@/Layouts/NavBar'
 import { Head } from '@inertiajs/inertia-react'
 
-function Index({ productos }) {
+function Index({ productos, usuario}) {
 
     return (
         <Navbar
             header={<h2 className="font-semibold text-2xl text-gray-800 dark:text-gray-200 leading-tight">Productos</h2>}
+            usuario={usuario}
         >
             <Head title='Productos' />
 

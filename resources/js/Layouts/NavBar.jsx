@@ -5,8 +5,10 @@ import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/inertia-react';
 
-export default function Navbar({header, children}) {
+export default function Navbar({ header, children, usuario }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+
+
 
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -25,7 +27,7 @@ export default function Navbar({header, children}) {
                                     Dashboard
                                 </NavLink>
                             </div>
-                            
+
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink href={route('nosotros')} active={route().current('nosotros')}>
                                     Nosotros
@@ -48,7 +50,12 @@ export default function Navbar({header, children}) {
                                                 type="button"
                                                 className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150"
                                             >
-                                                {""}
+                                                {usuario
+                                                    ?
+                                                    usuario.name
+                                                    :
+                                                    "Iniciar Sesion"
+                                                }
 
                                                 <svg
                                                     className="ml-2 -mr-0.5 h-4 w-4"
@@ -67,10 +74,25 @@ export default function Navbar({header, children}) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
-                                        <Dropdown.Link href={route('logout')} method="post" as="button">
-                                            Log Out
-                                        </Dropdown.Link>
+                                        {usuario ?
+                                            <div>
+
+                                                <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
+                                                <Dropdown.Link href={route('logout')} method="post" as="button">
+                                                    Log Out
+                                                </Dropdown.Link>
+
+                                            </div>
+                                            :
+                                            <div>
+                                                <Dropdown.Link href={route('login')}>Iniciar Cesion</Dropdown.Link>
+                                                <Dropdown.Link href={route('register')} method="post" as="button">
+                                                    Registrarse
+                                                </Dropdown.Link>
+                                            </div>
+                                        }
+
+
                                     </Dropdown.Content>
                                 </Dropdown>
                             </div>
@@ -124,16 +146,36 @@ export default function Navbar({header, children}) {
                     <div className="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
                         <div className="px-4">
                             <div className="font-medium text-base text-gray-800 dark:text-gray-200">
-                                {"auth.user.name"}
+                                {usuario
+                                    ?
+                                    usuario.name
+                                    :
+                                    "Iniciar Sesion"
+                                }
                             </div>
                             <div className="font-medium text-sm text-gray-500">{"auth.user.email"}</div>
                         </div>
 
                         <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route('profile.edit')}>Profile</ResponsiveNavLink>
-                            <ResponsiveNavLink method="post" href={route('logout')} as="button">
-                                Log Out
-                            </ResponsiveNavLink>
+                            {usuario
+                                ?
+                                <div>
+                                    <ResponsiveNavLink href={route('profile.edit')}>Perfil</ResponsiveNavLink>
+                                    <ResponsiveNavLink method="post" href={route('logout')} as="button">
+                                        Cerrar Cesion
+                                    </ResponsiveNavLink>
+
+                                </div>
+                                :
+                                <div>
+                                    <ResponsiveNavLink href={route('profile.edit')}>Iniar Cesion</ResponsiveNavLink>
+                                    <ResponsiveNavLink method="post" href={route('logout')} as="button">
+                                        Registrarse
+                                    </ResponsiveNavLink>
+
+                                </div>
+                            }
+
                         </div>
                     </div>
                 </div>

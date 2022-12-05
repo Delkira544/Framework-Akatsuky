@@ -12,7 +12,7 @@ import Navbar from '@/Layouts/NavBar'
 
 
 
-function Show({ producto, comentarios, id }) {
+function Show({ producto, comentarios, usuario }) {
    const { data, setData, post, processing, reset, errors } = useForm({
       'producto_id': producto.id,
       'titulo': '',
@@ -21,15 +21,15 @@ function Show({ producto, comentarios, id }) {
 
    const enviar = (evento) => {
       evento.preventDefault()
-      console.log(data)
       post(route("comentarioProducto.store"), { onSuccess: () => reset() })
+      console.log(usuario)
 
    }
 
    return (
       <Navbar
+         usuario={usuario}
       >
-         {console.log(comentarios)}
          <Head title={producto.nombre} />
          <div className="max-w-7xl mx-auto sm:px-6 lg:px-1 py-2">
             <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg px-12 py-9">
@@ -73,7 +73,7 @@ function Show({ producto, comentarios, id }) {
                      </textarea>
                      <InputError message={errors.cuerpo} />
                      <PrimaryButton
-                        className=''
+                        
                         disabled={processing}
                      >
                         Comentar
@@ -83,10 +83,9 @@ function Show({ producto, comentarios, id }) {
                </div>
 
                <div className='bg-white mt-5'>
-                  {console.log(id)}
                   {
                      comentarios.map( comentario =>
-                        <ComentarioProducto key={comentario.id} comentario={comentario} id={id} />
+                        <ComentarioProducto key={comentario.id} comentario={comentario} id={usuario?usuario.id:""} />
 
                      )
                   }
