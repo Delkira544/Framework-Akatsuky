@@ -23,7 +23,8 @@ Route::get('/nosotros', function () {
 })->middleware([])->name('nosotros');
 
 Route::resource('productos', ProductoController::class)
-    ->only(["index", "show"]);
+    ->only(["index", "show"])
+    ->middleware([]);
 
 Route::resource('comentarioProducto', ComentarioProductoController::class)
     ->only(['store', 'update', 'destroy'])
