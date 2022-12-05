@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\ComentarioProductoController;
 use App\Http\Controllers\NosotrosController; //! Se incluye el controlador de nosotros
 use App\Http\Controllers\ProductoController; //! Importamos el controlador de productos
 use App\Http\Controllers\ProfileController;
+
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -16,13 +19,15 @@ Route::get('/nosotros', function () {
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
     ]);
+
 })->middleware([])->name('nosotros');
 
-
 Route::resource('productos', ProductoController::class)
-->only(["index", "show"]);
+    ->only(["index", "show"]);
 
-
+Route::resource('comentarioProducto', ComentarioProductoController::class)
+    ->only(['store', 'update', 'destroy'])
+    ->middleware(["auth", "verified"]);
 
 
 

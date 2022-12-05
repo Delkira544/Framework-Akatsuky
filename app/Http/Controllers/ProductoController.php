@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ComentarioProducto;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -24,14 +25,17 @@ class ProductoController extends Controller
 
     public function store(Request $request)
     {
-        //
+       //
     }
 
 
     public function show(Producto $producto)
     {
+        $comentarios = Producto::find($producto->id)->comentarios()->where("titulo", "hjasdfol")->get();
+        
         return Inertia::render('Productos/Show', [
-            'producto' => $producto
+            'producto' => $producto,
+            'comentarios' => $comentarios
         ]);
     }
 
