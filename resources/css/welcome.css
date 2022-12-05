@@ -6,7 +6,7 @@
 }
 
 .colorrojo{
-    background-color: rgba(201, 105, 132);
+    background-color: rgba(201, 105, 132, 0.9);
 }
 .colornose{
     background-color: rgb(254, 240, 237, 0.8);
@@ -14,4 +14,115 @@
 
 .colorinvisible{
     background-color: rgb(254, 240, 237, 0.0);
+}
+
+.navbarcito{
+    text-align: center;
+}
+
+.textocentrado{
+    text-align: center;
+}
+
+.titulosuperior{
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    font-size: 45px;
+    font-family: 'Courier New', Courier, monospace;
+
+}
+h2{
+    font-size: 30px;
+}
+
+
+.textocentral{
+    font-style: oblique;
+    font-size: 18px;
+    border-radius: 20px;
+    overflow: auto;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+div img{
+    padding-top: 5px;
+    padding-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 640px;
+    height: 360px;
+    border-radius: 30px;
+    
+}
+
+.anuncioizquierda {
+    font-family: fantasy;
+    width: 70%;
+    text-align: center;
+    flex-wrap: wrap;
+    align-items: center;
+    border-radius: 10px;
+   
+}
+.anuncioizquierda img{
+    height: 80%;
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-radius: 20px;
+}
+
+
+.anuncioderecha {
+    font-family: fantasy;
+    width: 70%;
+    text-align: center;
+    flex-wrap: wrap;
+    align-items: center;
+    border-radius: 10px;
+}
+.anuncioderecha img{
+    height: 80%;
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-radius: 20px;
+}
+
+
+
+
+.footer{
+    
+    width: auto;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer  img{
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+    
+}
+
+.webpay img{
+    width: 350px;
+    height: 100px;
+}
+
+.linkcontacto{
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.linkcontacto img{
+    width: 125px;
+    height: 125px;
+    border-radius: 20px;
 }
