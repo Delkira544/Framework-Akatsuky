@@ -1,21 +1,38 @@
 <?php
 
-use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\ComentarioProductoController;
+use App\Http\Controllers\NosotrosController; //! Se incluye el controlador de nosotros
+use App\Http\Controllers\ProductoController; //! Importamos el controlador de productos
 use App\Http\Controllers\ProfileController;
+
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
+/**
+ * Aqui se creo la ruta que apunta a la vista de react por medio de inertia.
+ */
+Route::get('/nosotros', function () {
+    return Inertia::render('Nosotros/Index', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+    ]);
+
+})->middleware([])->name('nosotros');
+
+Route::resource('productos', ProductoController::class)
+    ->only(["index", "show"])
+    ->middleware([]);
+
+Route::resource('comentarioProducto', ComentarioProductoController::class)
+    ->only(['store', 'update', 'destroy'])
+    ->middleware(["auth", "verified"]);
+
+
+
+
 
 Route::resource('contacto', ContactoController::class)
     ->only(['index', 'store', 'update', 'destroy'])
@@ -41,4 +58,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
