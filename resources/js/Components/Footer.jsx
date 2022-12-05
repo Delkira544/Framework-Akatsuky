@@ -19,13 +19,14 @@ const Footer = () => {
         
             <div className='webpay'><Image url={webpay} /></div>
             {espacio}  
-            <div><Image url={face} /></div>
+            <div><a href="https://facebook.com"><Image url={face} /></a></div>
             {espacio}
-            <div><Image url={twitter} /></div>
+            <div><a href="https://twitter.com"><Image url={twitter} /></a></div>
             {espacio}
-            <div><Image url={git} /></div>
+            <div><a href="https://github.com"><Image url={git} /></a></div>
             {espacio}
-            <div><Image url={insta} /></div>
+            
+            <div><a href="https://instagram.com"><Image url={insta} /></a></div>
             {espacio}
         </div>
     </>

@@ -5,13 +5,43 @@ import Image from '../Components/fotos'
 import Footer from '../Components/Footer'
 
 import ImagenInferior from '../../images/pecopeco.gif'
+import ImagenInferior2 from '../../images/tacatacataca.gif'
+import ImagenInferior3 from '../../images/ok.gif'
+import ImagenInferior4 from '../../images/7587.gif'
 import Anuncio1 from '../../images/publicidad/rickroll-roll.gif'
 import Anuncio2 from '../../images/publicidad/ad-example.gif'
-
+import Carousel from 'react-grid-carousel'
 
 
 export default function Welcome(props) {
-
+    class Timer extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = { seconds: 0 };
+        }
+      
+        tick() {
+          this.setState(state => ({
+            seconds: state.seconds + 1
+          }));
+        }
+      
+        componentDidMount() {
+          this.interval = setInterval(() => this.tick(), 1000);
+        }
+      
+        componentWillUnmount() {
+          clearInterval(this.interval);
+        }
+      
+        render() {
+          return (
+            <div>
+              Segundos: {this.state.seconds}
+            </div>
+          );
+        }
+      }
     var textointroduccion =  <p >
                     Este es Akatsuki Store, una pagina hecha por el proyecto de mismo
                     nombre <ins>Akatsuki Proyect</ins> . <br />
@@ -42,12 +72,13 @@ export default function Welcome(props) {
 
     return (
         <>
-            <Head title="Akatsuki Store" />
-            
+            <Head title="Index" />
+
             <div className="min-h-screen fondo flex flex-row">
                <div className=''> 
                     <div className=' py-2 navbarcito colornose'>
-                        aqui va el navbar 
+                        aqui va el navbar
+                        <Timer/>
                     </div>
                     <div className='py-2 colorinvisible'></div>   
                     <div className="flex "> 
@@ -72,8 +103,24 @@ export default function Welcome(props) {
                             <div className='px-6 colorinvisible'></div>
                             
                             </div>
-
-                            <Image url={ImagenInferior}/>
+                            <Carousel cols={1} rows={1} gap={100} loop autoplay={2000} >
+                            <Carousel.Item>
+                                <Image url={ImagenInferior}/>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <Image url={ImagenInferior2}/>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <Image url={Anuncio1}/>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <Image url={ImagenInferior3}/>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <Image url={ImagenInferior4}/>
+                            </Carousel.Item>
+                            </Carousel>
+                            
                              
                         </div>
                         

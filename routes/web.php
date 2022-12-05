@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +17,9 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/contacto', function(){
-    return Inertia::render('Contacto');
-});
+Route::resource('contacto', ContactoController::class)
+    ->only(['index', 'store', 'update', 'destroy'])
+    ->middleware(['auth']);
 
 
 Route::get('/', function () {
