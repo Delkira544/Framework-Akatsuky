@@ -5,7 +5,7 @@ import relativeTime from "dayjs/plugin/relativeTime"
 import Dropdown from './Dropdown'
 import InputError from './InputError'
 import PrimaryButton from './PrimaryButton'
-import { useForm, usePage } from '@inertiajs/inertia-react'
+import { Link, useForm, usePage } from '@inertiajs/inertia-react'
 
 
 dayjs.extend(relativeTime)
@@ -29,9 +29,9 @@ const ComentarioProducto = ({ comentario, id }) => {
     <div className='p-5 flex space-x-2 dark:bg-slate-800 border-2 mb-4 rounded-lg'>
       <div className='flex-1'>
         <div className='flex justify-between items-center'>
-          <div>
+          <div className='border-b w-full pb-2'>
             <span className='dark:text-gray-300'>{comentario.user.name}</span>
-            <small className='ml-2 text-sm text-gray-600'>{dayjs(comentario.created_at).fromNow()}</small>
+            <small className='ml-2 text-sm dark:text-gray-400'>{dayjs(comentario.created_at).fromNow()}</small>
             {comentario.created_at !== comentario.updated_at && <small className='text-sm text-gray-600'>&middot; edited</small>}
           </div>
           {
@@ -39,28 +39,28 @@ const ComentarioProducto = ({ comentario, id }) => {
             <Dropdown>
               <Dropdown.Trigger>
                 <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 color-gray-900">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
                   </svg>
                 </button>
               </Dropdown.Trigger>
               <Dropdown.Content>
-                <div className='bg-white'>
-                  <button
-                    className='bg-white block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-200 focus:bg-gray-100 transition duration-150 ease-in-out'
-                    onClick={() => setEditing(true)}
-                  >
-                    Editar
-                  </button>
-                  <Dropdown.Link
-                    as={"button"}
-                    className='bg-white block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-200 focus:bg-gray-100 transition duration-150 ease-in-out'
-                    href={route("comentarioProducto.destroy", comentario.id)}
-                    method="delete"
-                  >
-                    Eliminar
-                  </Dropdown.Link>
-                </div>
+
+                <button
+                  className='dark:bg-gray-700 block w-full px-4 py-2 text-left text-sm leading-5 dark:text-gray-200 hover:bg-gray-600 focus:bg-gray-400 focus:text-gray-900 transition duration-150 ease-in-out'
+                  onClick={() => setEditing(true)}
+                >
+                  Editar
+                </button>
+                <Link
+                  as={"button"}
+                  className='dark:bg-gray-700 block w-full px-4 py-2 text-left text-sm leading-5 dark:text-gray-200 hover:bg-gray-600 focus:bg-gray-400 focus:text-gray-900 transition duration-150 ease-in-out'
+                  href={route("comentarioProducto.destroy", comentario.id)}
+                  method="delete"
+                >
+                  Eliminar
+                </Link>
+
               </Dropdown.Content>
             </Dropdown>
           }
@@ -93,8 +93,8 @@ const ComentarioProducto = ({ comentario, id }) => {
           </form>
           : (
             <>
-              <p className='mt-4 text-lg text-gray'>{comentario.titulo}</p>
-              <p className='mt-4 text-gray'>{comentario.cuerpo}</p>
+              <p className='mt-4 text-lg dark:text-gray-300'>{comentario.titulo}</p>
+              <p className='mt-4 dark:text-gray-300'>{comentario.cuerpo}</p>
             </>
 
           )

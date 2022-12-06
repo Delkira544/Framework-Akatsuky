@@ -33,7 +33,8 @@ const Contacto = ({ auth, contactos, usuario }) => {
   }
 
   return (
-    <Navbar>
+    <Navbar
+    usuario={usuario}>
 
       <Head title="Contacto" />
 
