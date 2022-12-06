@@ -73,7 +73,7 @@ function Show({ producto, comentarios, usuario }) {
                      </textarea>
                      <InputError message={errors.cuerpo} />
                      <PrimaryButton
-                        
+
                         disabled={processing}
                      >
                         Comentar
@@ -82,10 +82,10 @@ function Show({ producto, comentarios, usuario }) {
 
                </div>
 
-               <div className='bg-white mt-5'>
+               <div className='mt-5'>
                   {
-                     comentarios.map( comentario =>
-                        <ComentarioProducto key={comentario.id} comentario={comentario} id={usuario?usuario.id:""} />
+                     comentarios.map(comentario =>
+                        <ComentarioProducto key={comentario.id} comentario={comentario} id={usuario ? usuario.id : ""} />
 
                      )
                   }

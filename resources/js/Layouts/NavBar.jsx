@@ -5,7 +5,7 @@ import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/inertia-react';
 
-export default function Navbar({ header, children, usuario }) {
+export default function Navbar({ header, children, usuario, desabilitado }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
 
@@ -23,12 +23,6 @@ export default function Navbar({ header, children, usuario }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
-                                    Dashboard
-                                </NavLink>
-                            </div>
-
-                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink href={route('nosotros')} active={route().current('nosotros')}>
                                     Nosotros
                                 </NavLink>
@@ -39,63 +33,78 @@ export default function Navbar({ header, children, usuario }) {
                                     Productos
                                 </NavLink>
                             </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink href={route('contacto.index')} active={route().current('contacto.index')}>
+                                    Contactos
+                                </NavLink>
+                            </div>
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
-                            <div className="ml-3 relative">
-                                <Dropdown>
-                                    <Dropdown.Trigger>
-                                        <span className="inline-flex rounded-md">
-                                            <button
-                                                type="button"
-                                                className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150"
-                                            >
-                                                {usuario
-                                                    ?
-                                                    usuario.name
+                            {
+                                desabilitado
+                                    ? ""
+                                    :
+                                    <div className="ml-3 relative">
+                                        <Dropdown>
+                                            <Dropdown.Trigger>
+                                                <span className="inline-flex rounded-md">
+                                                    <button
+                                                        type="button"
+                                                        className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150"
+                                                    >
+                                                        {usuario
+                                                            ?
+                                                            usuario.name
+                                                            :
+                                                            "Iniciar Sesion"
+                                                        }
+
+                                                        <svg
+                                                            className="ml-2 -mr-0.5 h-4 w-4"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 20 20"
+                                                            fill="currentColor"
+                                                        >
+                                                            <path
+                                                                fillRule="evenodd"
+                                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                                clipRule="evenodd"
+                                                            />
+                                                        </svg>
+                                                    </button>
+                                                </span>
+                                            </Dropdown.Trigger>
+
+                                            <Dropdown.Content>
+                                                {usuario ?
+                                                    <div>
+
+                                                        <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
+                                                        <Dropdown.Link href={route('logout')} method="post" as="button">
+                                                            Log Out
+                                                        </Dropdown.Link>
+
+                                                    </div>
+
                                                     :
-                                                    "Iniciar Sesion"
+                                                    <div>
+                                                        <Dropdown.Link href={route('login')}>Iniciar Cesion</Dropdown.Link>
+                                                        <Dropdown.Link href={route('register')} method="post" as="button">
+                                                            Registrarse
+                                                        </Dropdown.Link>
+                                                    </div>
                                                 }
 
-                                                <svg
-                                                    className="ml-2 -mr-0.5 h-4 w-4"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                >
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                        clipRule="evenodd"
-                                                    />
-                                                </svg>
-                                            </button>
-                                        </span>
-                                    </Dropdown.Trigger>
 
-                                    <Dropdown.Content>
-                                        {usuario ?
-                                            <div>
+                                            </Dropdown.Content>
+                                        </Dropdown>
+                                    </div>
 
-                                                <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
-                                                <Dropdown.Link href={route('logout')} method="post" as="button">
-                                                    Log Out
-                                                </Dropdown.Link>
-
-                                            </div>
-                                            :
-                                            <div>
-                                                <Dropdown.Link href={route('login')}>Iniciar Cesion</Dropdown.Link>
-                                                <Dropdown.Link href={route('register')} method="post" as="button">
-                                                    Registrarse
-                                                </Dropdown.Link>
-                                            </div>
-                                        }
+                            }
 
 
-                                    </Dropdown.Content>
-                                </Dropdown>
-                            </div>
                         </div>
 
                         <div className="-mr-2 flex items-center sm:hidden">
@@ -126,12 +135,6 @@ export default function Navbar({ header, children, usuario }) {
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
-                            Dashboard
-                        </ResponsiveNavLink>
-                    </div>
-
-                    <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('nosotros')} active={route().current('nosotros')}>
                             Nosotros
                         </ResponsiveNavLink>
@@ -140,6 +143,12 @@ export default function Navbar({ header, children, usuario }) {
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('productos.index')} active={route().current('productos.index')}>
                             Productos
+                        </ResponsiveNavLink>
+                    </div>
+
+                    <div className="pt-2 pb-3 space-y-1">
+                        <ResponsiveNavLink href={route('contacto.index')} active={route().current('contacto.index')}>
+                            Contacto
                         </ResponsiveNavLink>
                     </div>
 
