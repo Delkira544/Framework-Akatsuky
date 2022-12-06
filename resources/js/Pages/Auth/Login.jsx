@@ -6,6 +6,8 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
+import Navbar from '@/Layouts/NavBar';
+
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -31,6 +33,9 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
+        <Navbar
+        desabilitado="true"
+        >
         <GuestLayout>
             <Head title="Log in" />
 
@@ -54,7 +59,7 @@ export default function Login({ status, canResetPassword }) {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel forInput="password" value="Password" />
+                    <InputLabel forInput="password" value="Contraseña" />
 
                     <TextInput
                         type="password"
@@ -71,7 +76,9 @@ export default function Login({ status, canResetPassword }) {
                 <div className="block mt-4">
                     <label className="flex items-center">
                         <Checkbox name="remember" value={data.remember} handleChange={onHandleChange} />
-                        <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
+                        <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
+                            Recuerdame
+                        </span>
                     </label>
                 </div>
 
@@ -97,10 +104,11 @@ export default function Login({ status, canResetPassword }) {
                     )}
 
                     <PrimaryButton className="ml-4" processing={processing}>
-                        Log in
+                        Iniciar Sesion
                     </PrimaryButton>
                 </div>
             </form>
         </GuestLayout>
+        </Navbar>
     );
 }

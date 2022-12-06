@@ -13,9 +13,11 @@ class ProductoController extends Controller
 
     public function index()
     {
+        
 
         return Inertia::render("Productos/Index", [
-            'productos' => Producto::all()
+            'productos' => Producto::all(),
+            'usuario' => Auth::user()
         ]);
     }
 

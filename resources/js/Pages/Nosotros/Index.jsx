@@ -30,8 +30,7 @@ function Index(props) {
 
     return (
         <Navbar
-            auth={props.auth}
-            errors={props.errors}
+            usuario={props.usuario}
             header={<h2 className="font-semibold text-2xl text-gray-800 dark:text-gray-200 leading-tight">¿ Quienes Somos Nosotros ?</h2>}
         >
             <Head title="Nosotros" />

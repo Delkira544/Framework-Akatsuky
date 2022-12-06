@@ -8,13 +8,13 @@ export default function CardProducto({ producto }) {
 
     return (
         <Link href={"/productos/"+ producto.id}>
-            <div className='aspect-square bg-[#7D6F6D] rounded-lg p-5'>
+            <div className='aspect-square dark:bg-zinc-700 rounded-lg p-5'>
                 <img className='rounded-md pb-3' src={Imagen} alt="" />
-                <div className='border-b border-blue-800 pb-1'>
+                <div className='dark:text-slate-200 border-b dark:border-amber-800 pb-1'>
                     <p>{producto.nombre}</p>
                     <p>{"$ " + producto.precio.toLocaleString("es-ES")}</p>
                 </div>
-                <p className='pt-2'>{producto.descripcion}</p>
+                <p className='pt-2 dark:text-slate-200'>{producto.descripcion}</p>
 
             </div>
         </Link>

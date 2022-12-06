@@ -6,6 +6,7 @@ use App\Http\Controllers\NosotrosController; //! Se incluye el controlador de no
 use App\Http\Controllers\ProductoController; //! Importamos el controlador de productos
 use App\Http\Controllers\ProfileController;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -17,8 +18,7 @@ use Inertia\Inertia;
  */
 Route::get('/nosotros', function () {
     return Inertia::render('Nosotros/Index', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
+       "usuario" => Auth::user()
     ]);
 
 })->middleware([])->name('nosotros');
@@ -42,10 +42,7 @@ Route::resource('contacto', ContactoController::class)
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        'usuario' => Auth::user()
     ]);
 });
 

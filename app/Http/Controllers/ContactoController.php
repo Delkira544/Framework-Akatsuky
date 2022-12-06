@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contacto;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -12,7 +13,8 @@ class ContactoController extends Controller
     public function index()
     {
         return Inertia::render('Contacto',[
-            'contactos' => Contacto::with('user:id,name')->latest()->get()
+            'contactos' => Contacto::with('user:id,name')->latest()->get(),
+            'usuario' => Auth::user()
         ]);
     }
 
